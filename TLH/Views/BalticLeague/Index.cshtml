@@ -1,0 +1,17 @@
+﻿@model TLH.Models.BalticLeague.IndexBL
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Baltic League Menu</h1>
+
+<div>
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="BalticLeague" asp-action="Scoreboard" asp-route-id="@Model.Id">Score Board</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="BalticLeague" asp-action="Players" asp-route-id="@Model.Id">Players</a>
+        </li>
+    </ul>
+</div>

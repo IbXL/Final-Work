@@ -1,0 +1,139 @@
+﻿@model TLH.Models.BalticLeague.PlayerDetailsViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+<style>
+    .form-control-local {
+        /* display: block; */
+        /* width: 100%; */
+        height: calc(1.5em + .75rem + 2px);
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+    .form-control-local:disabled, .form-control-local[readonly] {
+        background-color: #e9ecef;
+        opacity: 1;
+    }
+    table {
+        table-layout: auto;
+        border-collapse: collapse;
+        width: 50%;
+        text-align: center;
+        border: 1px ridge #f2f2f2;
+    }
+
+        table td {
+        }
+    #divElement {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -50px;
+        margin-left: -50px;
+        width: 100px;
+        height: 100px;
+    }
+    * {
+        box-sizing: border-box;
+    }
+
+    .row {
+        margin-left: -5px;
+        margin-right: -5px;
+    }
+
+    .column {
+        float: left;
+        width: 50%;
+        padding: 5px;
+    }
+
+    /* Clearfix (clear floats) */
+    .row::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    th, td {
+        text-align: center;
+        padding: 16px;
+    }
+
+    td:hover{
+        background-color: gray
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    .tet td:nth-child(even) {
+        background-color: #e0dfbf;
+    }
+    .kek td:nth-child(even) {
+        background-color: white;
+        border: 1px ridge #f2f2f2;
+    }
+    .pet td {
+        border: 1px ridge #f2f2f2;
+    }
+</style>
+
+<h1>Details</h1>
+
+<div>
+    <h4>@Model.Name</h4>
+    <hr />
+    <dl class="row">
+        <dd class="col-sm-10">
+            Merit : @Html.TextBoxFor(m => m.Merit, new { @class = "form-control-local", @readonly = "readonly" })
+        </dd>
+        <dd class="col-sm-10">
+            Total Kills @Model.TourName : @Html.TextBoxFor(m => m.TTK, new { @class = "form-control-local", @readonly = "readonly" })  <br/>Total Kills (All Leagues) : @Html.TextBoxFor(m => m.TotalKills, new { @class = "form-control-local", @readonly = "readonly" })
+        </dd>
+    </dl>
+    <table>
+        @if (Model.Days.Count() > 0)
+        {
+            <tr>
+                <td>Days\Matches</td>
+                @foreach (var match in Model.Days.ElementAt(0).Matches)
+                {
+                    <td>@match.Name</td>
+                }
+                <td>Total Kills</td>
+            </tr>
+
+            @foreach (var day in Model.Days)
+            {
+                <tr>
+                    <td>
+                        @day.Name
+                    </td>
+                    @foreach (var match in day.Matches)
+                    {
+                        <td>
+                            @match.KScore
+                        </td>
+                    }
+                    <td>
+                        @day.KScore
+                    </td>
+                </tr>
+            }
+        }
+        </table>
+</div>

@@ -1,0 +1,44 @@
+﻿@model TLH.Models.Matches.TeamsViewModel
+
+@{
+    ViewData["Title"] = "GetTeams";
+}
+
+<h1>TeamView</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Merit
+            </th>
+            <th>Kill</th>
+            <th>Placement</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Teams) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Merit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KScores)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PScores)
+            </td>
+            <td>
+                <a asp-action="EditTeam" asp-route-tmId="@item.Id" asp-route-mId="@Model.MId">Edit</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

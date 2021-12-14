@@ -1,0 +1,57 @@
+﻿@model TLH.Models.BalticLeague.PlayersViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Players</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Player Name
+            </th>
+            <th>
+                Kills
+            </th>
+            <th>
+                Team Name
+            </th>
+            <th>
+                Roles
+            </th>
+            <th>
+                IsSub
+            </th>
+            <th>
+                Merit
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Players)
+        {
+        <tr>
+            <td>
+                <a asp-action="PlayerDetails" asp-route-id="@item.Id" asp-route-tId="@Model.TournamentId">@Html.DisplayFor(modelItem => item.Name)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalKills)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TeamName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Roles)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsSub)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Merit)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,174 @@
+﻿@model TLH.Models.BalticLeague.TeamDetailsViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+<style>
+    .form-control-local {
+        /* display: block; */
+        /* width: 100%; */
+        height: calc(1.5em + .75rem + 2px);
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+    .form-control-local:disabled, .form-control-local[readonly] {
+        background-color: #e9ecef;
+        opacity: 1;
+    }
+    table {
+        table-layout: auto;
+        border-collapse: collapse;
+        width: 50%;
+        text-align: center;
+        border: 1px ridge #f2f2f2;
+    }
+
+        table td {
+        }
+    #divElement {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -50px;
+        margin-left: -50px;
+        width: 100px;
+        height: 100px;
+    }
+    * {
+        box-sizing: border-box;
+    }
+
+    .row {
+        margin-left: -5px;
+        margin-right: -5px;
+    }
+
+    .column {
+        float: left;
+        width: 50%;
+        padding: 5px;
+    }
+
+    /* Clearfix (clear floats) */
+    .row::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    th, td {
+        text-align: center;
+        padding: 16px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    .tet td:nth-child(even) {
+        background-color: #e0dfbf;
+    }
+    .kek td:nth-child(even) {
+        background-color: white;
+        border: 1px ridge #f2f2f2;
+    }
+    .pet td {
+        border: 1px ridge #f2f2f2;
+    }
+</style>
+<div style="text-align:center">
+    <h1>@Model.Name</h1>
+</div>
+<div>
+    <hr />
+    <dl class="row">
+        <dd class="col-sm-10">
+            Merit : @Html.TextBoxFor(m => m.Merit, new { @class = "form-control-local", @readonly = "readonly" })
+        </dd>
+        <dd class="col-sm-10">
+            Total Kills @Model.TourName : @Html.TextBoxFor(m => m.TTK, new { @class = "form-control-local", @readonly = "readonly" }) - Total Kills (All Leagues) : @Html.TextBoxFor(m => m.TotalKills, new { @class = "form-control-local", @readonly = "readonly" })
+        </dd>
+        <dd class="col-sm-10">
+            Total Placement @Model.TourName : @Html.TextBoxFor(m => m.TTP, new { @class = "form-control-local", @readonly = "readonly" }) - Total Placement (All Leagues): @Html.TextBoxFor(m => m.TotalPlacement, new { @class = "form-control-local", @readonly = "readonly" })
+        </dd>
+        <dd class="col-sm-10">
+            Total Score @Model.TourName : @Html.TextBox(" ", (Model.TTK + Model.TTP), new { @class = "form-control-local", @readonly = "readonly" }) - Total Score (All Leagues): @Html.TextBox(" ", (Model.TotalKills + Model.TotalPlacement), new { @class = "form-control-local", @readonly = "readonly" })
+        </dd>
+    </dl>
+</div>
+<div class="row">
+    @if (Model.Players.Count() > 0) {
+    <div class="column">
+    <table>
+        <tr class="pet">
+            <td>Tournaments\Player Names</td>
+            @foreach (var player in Model.Players)
+        {
+            <td>
+                <a asp-action="PlayerDetails" asp-route-id="@player.Id" asp-route-tId="@Model.TourId">@player.Name</a>
+            </td>
+        }
+        </tr>
+        <tr>
+            <td>Kills on @Model.TourName</td>
+            @foreach (var player in Model.Players)
+            {
+            <td>
+                @player.TotalKills
+            </td>
+            }
+        </tr>
+    </table>
+    </div>
+    }<br /><br /><br />
+    <div class="column">
+    <table class="tet">
+        @if (Model.Days.Count() > 0)
+        {
+        <tr class="kek">
+            <td>Days\Matches</td>
+            @foreach (var match in Model.Days.ElementAt(0).Matches)
+                {
+            <td colspan="2">@match.Name</td>
+                }
+            <td>Total Kills</td>
+            <td>Total Placements</td>
+        </tr>
+        }
+        @foreach (var day in Model.Days)
+        {
+        <tr>
+            <td>
+                @day.Name
+            </td>
+            @foreach (var match in day.Matches)
+                {
+            <td>
+                @match.KScore
+            </td>
+            <td>
+                @match.PScore
+            </td>
+                }
+            <td>
+                @day.KScore
+            </td>
+            <td>
+                @day.PScore
+            </td>
+        </tr>
+         }
+    </table>
+    </div>
+</div>

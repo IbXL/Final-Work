@@ -1,0 +1,59 @@
+﻿@model TLH.Models.PT.PTIndexViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create" asp-route-teamId="@Model.TeamId" asp-route-tournamentId="@Model.TournamentId">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Tournament
+            </th>
+            <th>
+                Player
+            </th>
+            <th>
+                Team
+            </th>
+            <th>
+                IsSub
+            </th>
+            <th>
+                Role
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.PTs) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TournamentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlayerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TeamName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsSub)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Role)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

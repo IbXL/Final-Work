@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    .button {
+      background-color: white; /* Green */
+      border: none;
+      color: #0066ff;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      border-radius: 12px;
+      border: 2px solid #4CAF50;
+      width: 120px;
+      height: 90px;
+      display: inline-block;
+    }
+</style>
+
+<h1>Baltic League Admin Panel</h1>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div>
+    <a asp-controller="Tournaments" asp-action="Index"><button title="Tournaments" class="nav-link button">
+        <i class="fas fa-chess" style="font-size:50px;"></i>
+    </button></a>
+    <a asp-controller="Teams" asp-action="Index"><button title="Teams" class="nav-link button">
+        <i class="fas fa-users" style="font-size:50px;"></i>
+    </button></a>
+    <a asp-controller="Players" asp-action="Index"><button title="Players" class="nav-link button">
+        <i class="fas fa-user-friends" style="font-size:50px;"></i></a>
+    </button></a>
+    <a asp-controller="TTs" asp-action="Index"><button title="Teams and Tournaments" class="button">
+        <i class="fas fa-users" style="font-size:50px;"></i><i class="fas fa-plus" style="font-size:20px;"></i>
+    </button></a>
+    <a asp-controller="PTs" asp-action="Index"><button title="Player and Teams" class="nav-link button">
+        <i class="fas fa-user-plus" style="font-size:50px;"></i>
+    </button></a>
+    <a asp-controller="DayOfTs" asp-action="Index"><button title="Days of Tournaments" class="nav-link button">
+        <i class="fas fa-calendar-day" style="font-size:50px;"></i>
+    </button></a>
+    <a asp-controller="Matches" asp-action="Index"><button title="Matches" class="nav-link button">
+        <i class="fas fa-gamepad" style="font-size:50px;"></i>
+    </button></a>
+    <a asp-controller="Prizes" asp-action="Index"><button title="Prizes" class="nav-link button">
+        <i class="fas fa-award" style="font-size:50px;"></i>
+    </button></a>
+    <a asp-controller="Admin" asp-action="ACCreate"><button title="Auto Tournament Create" class="nav-link button">
+        <i class="fas fa-plus-circle" style="font-size:50px;"></i>
+    </button></a>
+</div>

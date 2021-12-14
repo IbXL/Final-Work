@@ -1,0 +1,115 @@
+﻿@model TLH.Models.Players.PLayerDetailViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+<style>
+    table {
+        table-layout: auto;
+        border-collapse: collapse;
+        width: 50%;
+        text-align: center;
+        border: 1px ridge #f2f2f2;
+    }
+
+        table td {
+        }
+    #divElement {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -50px;
+        margin-left: -50px;
+        width: 100px;
+        height: 100px;
+    }
+    * {
+        box-sizing: border-box;
+    }
+
+    .row {
+        margin-left: -5px;
+        margin-right: -5px;
+    }
+
+    .column {
+        float: left;
+        width: 50%;
+        padding: 5px;
+    }
+
+    /* Clearfix (clear floats) */
+    .row::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    table {
+        width: 100%;
+    }
+
+    th, td {
+        text-align: center;
+        padding: 16px;
+    }
+    td:hover{
+        background-color: orange
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    .tet td:nth-child(even) {
+        background-color: #e0dfbf;
+    }
+    .kek td:nth-child(even) {
+        background-color: white;
+        border: 1px ridge #f2f2f2;
+    }
+    .pet td {
+        border: 1px ridge #f2f2f2;
+    }
+</style>
+<h1>Details Of @Model.Name</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Comment)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Comment)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Merit)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Merit)
+        </dd>
+    </dl>
+    <table>
+        <tr>
+            <td>Tournament Name</td>
+            <td>Team Name</td>
+            <td>Place</td>
+            <td>Prize</td>
+        </tr>
+        @if (Model.Achives.Count() > 0)
+        {
+            @foreach (var ach in Model.Achives)
+            {
+                <tr>
+                    <td>@ach.TourName</td>
+                    <td>@ach.TeamName</td>
+                    <td>@ach.Place</td>
+                    <td>@ach.Amount</td>
+                </tr>
+            }
+        }
+    </table>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

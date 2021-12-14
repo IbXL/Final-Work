@@ -1,0 +1,47 @@
+﻿@model TLH.Models.Tournament.TournamentIndexViewModel
+@using Microsoft.AspNetCore.Identity
+@using TLH.Entity
+@inject SignInManager<Users> SignInManager
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br/><br/>
+<br/><br/>
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <p>
+        <button class="button" asp-action="Create">Create New</button>
+    </p>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>Teams</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Tournaments) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                <a asp-controller="TTs" asp-action="Index" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.TeamCount)</a>
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

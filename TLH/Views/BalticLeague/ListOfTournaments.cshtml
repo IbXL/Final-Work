@@ -1,0 +1,32 @@
+﻿@model TLH.Models.BalticLeague.ListOfTournaments;
+
+@{
+    ViewData["Title"] = "ListOfTournaments";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Tournaments) {
+        <tr>
+            <td>
+                @item.TournamentName
+            </td>
+            <td>
+                <a asp-action="Scoreboard" asp-route-id="@item.TournamentId">Scoreboard</a>
+            </td>
+            <td>
+                <a asp-action="Players" asp-route-id="@item.TournamentId">Players</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

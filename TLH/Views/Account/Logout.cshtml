@@ -1,0 +1,40 @@
+﻿
+@{
+    var principal = System.Threading.Thread.CurrentPrincipal;
+    var account = principal.Identity;
+}
+
+@{
+    ViewBag.Title = "Logout";
+}
+
+<div class="page-content-inner">
+
+    <div class="page-title">
+        <h2>
+            Logout
+        </h2>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-6 col-md-offset-3">
+
+            @using (Html.BeginForm("Logout", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, true, new { @class = "form-horizontal" }))
+            {
+            @Html.AntiForgeryToken()
+
+            <h4>Confirm log-out for user : @account.Name </h4>
+            <hr />
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Log-out" class="btn btn-primary" />
+                    @Html.ActionLink("Cancel", "LogoutCancelled", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, new { @class = "btn btn-default" })
+                </div>
+            </div>
+            }
+
+        </div>
+    </div>
+</div>
